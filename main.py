@@ -2,6 +2,33 @@ import streamlit as st
 import requests
 
 
+# --- Custom CSS to load Amiri Quran font ---
+st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap');
+
+    html, body, [class*="css"] {
+        font-family: 'Amiri Quran', serif;
+    }
+
+    .quran-text {
+        font-family: 'Amiri Quran', serif;
+        font-size: 28px;
+        direction: rtl;
+        text-align: right;
+        line-height: 2.2;
+        color: #222;
+    }
+
+    .title {
+        text-align: center;
+        font-family: 'Amiri Quran', serif;
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 st.title("Mushaf Quranic App")
 
 
@@ -24,5 +51,22 @@ response_surah = requests.get(
 
 
 for ayah in response_surah:
-    st.write(ayah["text"])
+    st.markdown(f'<div class="quran-text">{ayah["text"]}</div>', unsafe_allow_html=True)
     st.audio(ayah["audio"])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
